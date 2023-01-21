@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, useCallback } from 'react';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import API from '../../../helpers/API';
 import Colors from '../../../themes/colors';
 import {
@@ -16,39 +16,41 @@ const MainPageContent = () => {
   const [,setIsLoading] = useContext(LoadingContext);
   // declarations and variables
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
 
   const [breeds, setBreeds] = useState([]);
   const [data, setData] = useState([]);
   const [selectedBreed, setSelectedBreed] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [showError, setShowError] = useState(false);
+  const [loadList, setLoadList] = useState(false);
 
   // useEffects and functions
-  const getList = async() => {
-    try {
-      const response = await API.request("/images/search?" + new URLSearchParams({
-        page: currentPage,
-        limit: 8,
-        breed_id: selectedBreed,
-      }));
-      if(response.length) {
-        let newArray = [...data];
-        newArray.push(...response);
-        setData(newArray);
-        setShowError(false);
-      } else {
+  const getList = useCallback(async() => {
+    if(loadList) {
+      try {
+        const response = await API.request("/images/search?" + new URLSearchParams({
+          page: currentPage,
+          limit: 8,
+          breed_id: selectedBreed,
+        }));
+        if(response.length) {
+          let newArray = [...data];
+          newArray.push(...response);
+          setData(newArray);
+          setShowError(false);
+        } else {
+          setShowError(true);
+        }
+      } catch (error) {
         setShowError(true);
+      } finally {
+        setLoadList(false);
+        setTimeout(
+          setIsLoading(false)
+        , 5000)
       }
-    } catch (error) {
-      setShowError(true);
-    } finally {
-      setTimeout(
-        setIsLoading(false)
-      , 5000)
     }
-
-  };
+  }, [loadList, currentPage, data, selectedBreed, setIsLoading]);
 
   const getBreeds = async() => {
     const response = await API.request("/breeds");
@@ -65,15 +67,15 @@ const MainPageContent = () => {
     const breed = new URLSearchParams(window.location.search).get("breed");
     if (breed) {
       setSelectedBreed(breed);
+      setLoadList(true);
     }
-  }, [])
-
+  }, []);
 
   useEffect(() => {
-    if(selectedBreed) {
+    if(loadList) {
       getList()
     }
-  }, [selectedBreed, currentPage])
+  }, [getList, loadList]);
 
   return (
     <>
@@ -83,6 +85,7 @@ const MainPageContent = () => {
           setCurrentPage(0);
           setData([]);
           setSelectedBreed(value.currentTarget.value);
+          setLoadList(true);
         }}
         style={{marginBottom: 20}}
         value={selectedBreed}
@@ -122,7 +125,8 @@ const MainPageContent = () => {
         {(data.length && data.length % 8 === 0) && (
             <Button onClick={() => {
               setIsLoading(true);
-              setCurrentPage(currentPage + 1)
+              setCurrentPage(currentPage + 1);
+              setLoadList(true);
             }}>
               Load More
             </Button>
