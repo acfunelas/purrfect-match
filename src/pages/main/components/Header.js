@@ -1,5 +1,5 @@
 import React from 'react'
-import { MainPageLogoStyled, MainPageVectorStyled, DivHeaderContainerStyled } from './MainPageComponents.styled';
+import { MainPageLogoStyled, MainPageVectorStyled, DivHeaderContainerStyled } from './MainPageContent.styles';
 
 const Header = () => {
   return (

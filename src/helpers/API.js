@@ -27,7 +27,7 @@ const request = async (action, options, isNotJSON) => {
     ...others,
   }
 
-  let response = await fetch(action, opt);
+  let response = await fetch(action.toLowerCase().includes("http") ? action : config.api_root + action, opt);
   let responseJSON = null;
 
   if (isNotJSON !== true) {

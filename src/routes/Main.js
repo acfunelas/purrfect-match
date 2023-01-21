@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from './components/Header';
-import { DivBodyStyled, DivVideoBackground } from './Main.styled';
-import MainPageContent from './components/MainPageContent'
+import Header from '../pages/main/components/Header';
+import { DivBodyStyled, DivVideoBackground } from '../pages/main/Main.styled';
+import MainPageContent from '../pages/main/components/MainPageContent'
 import Container from 'react-bootstrap/Container';
 
 const Main = () => {

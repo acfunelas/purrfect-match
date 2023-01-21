@@ -1,14 +1,13 @@
-import React from 'react';
 import styled from 'styled-components';
 import Colors from '../../../themes/colors';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
-const HeaderTextStyled = styled.h1`
+export const HeaderTextStyled = styled.h1`
   font-weight: bold;
 `
 
-const DivHeaderContainerStyled = styled.div`
+export const DivHeaderContainerStyled = styled.div`
   margin-top: 50px;
   color: ${Colors.primary};
   display: flex;
@@ -16,15 +15,15 @@ const DivHeaderContainerStyled = styled.div`
   align-items: center;
 `
 
-const MainPageLogoStyled = styled.img`
+export const MainPageLogoStyled = styled.img`
   max-width: 400px;
 `
 
-const MainPageVectorStyled = styled.img`
+export const MainPageVectorStyled = styled.img`
   max-width: 100px;
 `
 
-const ImageButtonOverlay = styled.div`
+export const ImageButtonOverlay = styled.div`
   position: absolute;
   bottom: 100%;
   left: 0;
@@ -36,7 +35,7 @@ const ImageButtonOverlay = styled.div`
   transition: .5s ease;
 `
 
-const ImageContainerCardStyled = styled(Card)`
+export const ImageContainerCardStyled = styled(Card)`
   background-size: 100% 100%;
   background-repeat: no-repeat;
   height: 200px;
@@ -44,13 +43,13 @@ const ImageContainerCardStyled = styled(Card)`
   display: block;
 `
 
-const ContainerCardStyled = styled(Card)`
+export const ContainerCardStyled = styled(Card)`
   &:hover ${ImageButtonOverlay} {
     bottom: 0;
     height: 100%;
   }
 `
-const ContainerButtonStyled = styled(Button)`
+export const ContainerButtonStyled = styled(Button)`
   position: absolute;
   top: 50%;
   left: 50%;
@@ -59,14 +58,3 @@ const ContainerButtonStyled = styled(Button)`
   transform: translate(-50%, -50%);
   min-width: 150px;
 `
-
-export {
-  HeaderTextStyled,
-  DivHeaderContainerStyled,
-  MainPageLogoStyled,
-  MainPageVectorStyled,
-  ImageContainerCardStyled,
-  ImageButtonOverlay,
-  ContainerCardStyled,
-  ContainerButtonStyled,
-}
