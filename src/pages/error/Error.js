@@ -6,13 +6,13 @@ import LoadingContext from '../../context/LoadingContext';
 const ErrorPage = () => {
   const [,setIsLoading] = useContext(LoadingContext);
 
-  // useEffect(() => {
-  //   setIsLoading(false);
-  // }, [])
+  useEffect(() => {
+    setIsLoading(false);
+  }, [])
 
   return(
     <ErrorPageContainer>
-      <img src="/images/sad.gif" />
+      <img src="/images/sad.gif" alt="error-404-img" />
       <h5>UH OH. YOU ARE A LOST KITTEN</h5>
       <Button href="/">Back to Home</Button>
     </ErrorPageContainer>

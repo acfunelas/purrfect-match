@@ -1,4 +1,4 @@
-import { lazy } from 'react';
+import React from 'react';
 import { createBrowserRouter } from "react-router-dom";
 
 import MainPage from './Main';

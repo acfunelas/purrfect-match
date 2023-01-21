@@ -4,8 +4,8 @@ import { MainPageLogoStyled, MainPageVectorStyled, DivHeaderContainerStyled } fr
 const Header = () => {
   return (
     <DivHeaderContainerStyled>
-      <MainPageVectorStyled src="/images/cat-vector.png" alt='cat-vector'/>
-      <MainPageLogoStyled src="/images/logo.png" alt='logo'/>
+      <MainPageVectorStyled src="/images/cat-vector.png" alt='cat-vector' />
+      <MainPageLogoStyled src="/images/logo.png" alt='logo' />
       <p>Find your purrfect feline companion</p>
     </DivHeaderContainerStyled>
   )

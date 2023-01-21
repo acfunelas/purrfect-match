@@ -4,7 +4,7 @@ import { LoadingPageContainer } from './Loading.styles';
 const LoadingPage = () => {
   return(
     <LoadingPageContainer>
-      <img src="/images/loading.gif" />
+      <img src="/images/loading.gif" alt="loading-img" />
       <h5>LOADING... PLEASE WAIT</h5>
     </LoadingPageContainer>
   )

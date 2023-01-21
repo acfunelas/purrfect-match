@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../pages/main/components/Header';
-import { DivBodyStyled, DivVideoBackground } from '../pages/main/Main.styled';
+import { DivBodyStyled } from '../pages/main/Main.styled';
 import MainPageContent from '../pages/main/components/MainPageContent'
 import Container from 'react-bootstrap/Container';
 
